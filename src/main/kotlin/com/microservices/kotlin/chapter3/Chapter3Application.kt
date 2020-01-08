@@ -16,11 +16,12 @@ class Chapter3Application {
 		)
 	}
 
-	@Bean
+	/*@Bean //-> 빈을 제거해서 단순한 클래스로 남겨둔다.
 	fun customers() = ConcurrentHashMap<Int, Customer>(initialCustomers.associateBy(Customer :: id))
 	//이 코드는 해시맵을 생성하고 이를 스프링 컨텍스트에 빈으로 추가한다.
 	//서로 다른 요청이 맵의 동일한 요소에 액세스할 때와 같이 동기화 문제가 발생할 수가 있으므로 ConcurrentHashMap을 사용한다.
 	//빈이 준비됐으니 그것을 컨트롤러에 주입autowire할 수 있다.
+*/
 
 }
 

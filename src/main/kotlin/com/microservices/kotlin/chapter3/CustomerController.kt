@@ -26,10 +26,9 @@ class CustomerController {
     * 이 객체가 JSON으로 변환돼 요청에 대한 응답으로 반환된다.
     * */
 
-
-
     @Autowired //해당 애너테이션을 사용해 빈을 얻고, 이를 이용해 요청에 응답한다.
     lateinit var customers : ConcurrentHashMap<Int, Customer>
+
 
     /*@RequestMapping(value = ["/customer/"], method = arrayOf(RequestMethod.GET))
     fun getCustomer() = customers[2]*/
@@ -59,5 +58,21 @@ class CustomerController {
         it.value.name.contains(nameFilter, true)//contains의 두번째 매개변수로 대문자/소문자를 무시하도록 설정할 수 있다
     }.map(Map.Entry<Int, Customer>::value).toList()
 
+    //id를 사용하면 리소스를 제거할 수 있으므로 body 매개변수로 고객 정보를 가질 필요는 없다
+    @RequestMapping(value = ["/customer/{id}"], method = arrayOf(RequestMethod.DELETE))
+    fun deleteUser(@PathVariable id:Int) = customers.remove(id)
+
+    //PUT -> 지정된 리소스를 업데이트하도록 요청한다
+    //고객정보를 json body로 보내기 때문에 업데이트할 내용을 정확히 반영할 수 있다
+    @RequestMapping(value = ["/customer/{id}"], method = arrayOf(RequestMethod.PUT))
+    fun updateCustomer(@PathVariable id:Int, @RequestBody customer: Customer){
+        customers.remove(id)
+        customers[customer.id] = customer
+    }
+
+    //@RequestMapping 애너테이션을 사용해 메소드에 매개변수를 전달하는 것도 좋지만, 목적에 비해 코드량이 비교적 많다.
+    //스프링은 이 선언문을 줄일 수 있는 헬퍼를 제공한다.
+    @GetMapping(value = ["/customer/{id}"]) //비슷한 방식으로 @PostMapping, @PutMapping, @DeleteMapping 애너테이션을 사용할 수 있다.
+    fun getCustomer2(@PathVariable id:Int) = customers[id]
 
 }
