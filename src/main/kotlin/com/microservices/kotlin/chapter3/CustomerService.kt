@@ -9,7 +9,7 @@ import sun.jvm.hotspot.tools.jcore.NameFilter
 * 이 문제를 처리하기 위해 서비스 패턴을 사용한다.
 * 이를 통해 api 처리와 컨트롤러 간 커플링문제를 해결 할 수 있다.
 * */
-@Component
+
 interface CustomerService { //이런 방식은 고객 정보가 어떻게 저장/변경 혹은 검색되는지 노출하지 않는다.
     fun getCustomer(id: Int) : Customer? //null-safety, 고객을 찾지 못할 때 널 값을 반환할 수 있다.
     fun createCustomer(customer:Customer)

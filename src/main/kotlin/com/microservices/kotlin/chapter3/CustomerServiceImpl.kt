@@ -1,7 +1,8 @@
 package com.microservices.kotlin.chapter3
 
+import org.springframework.stereotype.Component
 import java.util.concurrent.ConcurrentHashMap
-
+@Component
 class CustomerServiceImpl : CustomerService {
     //메소드를 구현하기 전에 고객을 해당 클래스에 포함시켜야 한다.
     companion object{

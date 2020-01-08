@@ -16,7 +16,7 @@ JSON(JavaScript Object Notation)은 객체를 전송하기 위한 사람이 읽�
 이것은 자바스크립트에서 파생됐지만 언어독립적인 데이터 형식으로,
 대부분의 프로그래밍 언어에는 JSON형식의 데이터를 생성하고 파싱하는 코드가 포함돼있다.
 * */
-@RestController
+//@RestController
 class CustomerController {
    /* @RequestMapping(value = ["/customer"], method = arrayOf(RequestMethod.GET))
     fun getCustomer() = Customer(1, "강하늘")*/
