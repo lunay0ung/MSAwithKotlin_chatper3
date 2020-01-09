@@ -9,10 +9,10 @@ class CustomerServiceImpl : CustomerService {
     //메소드를 구현하기 전에 고객을 해당 클래스에 포함시켜야 한다.
     companion object{
         val initialCustomers = arrayOf(
-                Customer(1, "Kotlin", Telephone("+44", "2392040")),
+                Customer(1, "Kotlin"),
                 Customer(2, "Spring", Telephone("+45", "26935693")),
                 Customer(3, "MicroService", Telephone("+23", "794080357")),
-                Customer(4, "Learn", Telephone("+80", "4636356"))
+                Customer(4, "Learn")
         )
         val customers = ConcurrentHashMap<Int, Customer>(
             initialCustomers.associateBy(Customer::id)
