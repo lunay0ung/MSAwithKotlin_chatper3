@@ -42,6 +42,17 @@ class UpdatedCustomerController {
         //아무 것도 출력하지 않으므로 void타입과 동격인 코틀린의 unit을 사용한다
         return ResponseEntity(Unit, HttpStatus.CREATED)
     }
+    /*
+  * api로 요청을 보낼 때 json 객체를 보낼 수 있으며, @RequestMapper에 변수가 body를 갖도록 설정하면
+  * 이를 객체로 변환할 수 있다. 이를 역직렬화라고 한다.
+  * 스프링은 jackson을 사용해 ---json 객체를 jvm 클래스로 역직렬화---하며,
+  * 직렬화와 마찬가지로 object mapper클래스를 사용한다.
+  *
+  * 그런다음 request를 보내면, 스프링은 request body를 가져온 후
+  * objectMapper를 사용해 지정된 클래스의 jvm 객체를 생성한다. 
+  * */
+
+
 
     //위 메소드에서는 리턴할 body가 필요없으므로 unit과 상태를 반환한다. 하지만 존재하지 않는 id로 delete, update 메소드를 호출하면 empty json object가 반환된다
     //그러나 unit 메소드에서도 반환하는 내용이 없도록 코드를 변경할 수 있다. 필요한 경우 다음과 같이 수정한다.
