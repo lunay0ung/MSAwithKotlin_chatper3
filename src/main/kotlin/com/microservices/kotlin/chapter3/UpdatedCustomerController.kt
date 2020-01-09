@@ -50,7 +50,7 @@ class UpdatedCustomerController {
         return ResponseEntity<Unit?>(null, HttpStatus.CREATED)
         //api 사용자 입장에서는 빈 객체보다는 단순히 내용이 없는 것이 덜 혼란스러울 수 있기 떄문에 빈 응답을 선호한다.
         //*rest api에서는 항상 값을 반환하는 것이 좋다. 가령 모든 것이 정상이라는 {"result" : "ok"}를 반환할 수 있다.
-        //이를 통해 소비자가 응답을 오해하는 것을 방지할 수 있다. 소비자는 응답 본문에 관계없이 항상 http status를 신뢰해야 한다. 
+        //이를 통해 소비자가 응답을 오해하는 것을 방지할 수 있다. 소비자는 응답 본문에 관계없이 항상 http status를 신뢰해야 한다.
     }
 
     //찾을 수 없는 리소스를 삭제하려면 404 not found 응답, 삭제 성공 시 200ok

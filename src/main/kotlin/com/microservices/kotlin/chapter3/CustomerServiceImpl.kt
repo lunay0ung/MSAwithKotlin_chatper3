@@ -1,5 +1,7 @@
 package com.microservices.kotlin.chapter3
 
+import com.microservices.kotlin.chapter3.Customer.Telephone
+//클래스 시작 부분에 static import문을 이용하면 Customer 내부 클래스를 호출하더라도 Customer.Telephone 대신 Telephone만 써도 된다.
 import org.springframework.stereotype.Component
 import java.util.concurrent.ConcurrentHashMap
 @Component
@@ -7,10 +9,10 @@ class CustomerServiceImpl : CustomerService {
     //메소드를 구현하기 전에 고객을 해당 클래스에 포함시켜야 한다.
     companion object{
         val initialCustomers = arrayOf(
-                Customer(1, "Kotlin"),
-                Customer(2, "Spring"),
-                Customer(3, "MicroService"),
-                Customer(4, "Learn")
+                Customer(1, "Kotlin", Telephone("+44", "2392040")),
+                Customer(2, "Spring", Telephone("+45", "26935693")),
+                Customer(3, "MicroService", Telephone("+23", "794080357")),
+                Customer(4, "Learn", Telephone("+80", "4636356"))
         )
         val customers = ConcurrentHashMap<Int, Customer>(
             initialCustomers.associateBy(Customer::id)
