@@ -1,5 +1,6 @@
 package com.microservices.kotlin.chapter3
 
+import com.microservices.kotlin.chapter3.Error.CustomerNotFoundException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -24,12 +25,16 @@ class UpdatedCustomerController {
     /*fun getCustomer(@PathVariable id:Int) = customerService.getCustomer(id), HttpStatus.OK
          */
     //리소스에 대한 get요청을 받으면 리소스와 200OK 또는 리소스를 찾을 수 없으면 404 not found를 응답해야 한다.
-    fun getCustomer(@PathVariable id: Int) : ResponseEntity<Customer?> {
+    /*fun getCustomer(@PathVariable id: Int) : ResponseEntity<Customer?> {
        val customer = customerService.getCustomer(id)
        val status = if (customer == null) HttpStatus.NOT_FOUND else HttpStatus.OK //고객이 없으면 null 반환 -> 상태는 404 not found
         return ResponseEntity(customer, status)
-   }
-
+   }*/
+    fun getCustomer(@PathVariable id: Int) : ResponseEntity<Customer?> {
+        val customer = customerService.getCustomer(id) ?:
+            throw CustomerNotFoundException("customer '$id' not found")
+        return ResponseEntity(customer, HttpStatus.OK)
+    }
 
     @PostMapping(value = ["/customer/"])
     /*fun createCustomer(@RequestParam customer: Customer){
@@ -49,7 +54,7 @@ class UpdatedCustomerController {
   * 직렬화와 마찬가지로 object mapper클래스를 사용한다.
   *
   * 그런다음 request를 보내면, 스프링은 request body를 가져온 후
-  * objectMapper를 사용해 지정된 클래스의 jvm 객체를 생성한다. 
+  * objectMapper를 사용해 지정된 클래스의 jvm 객체를 생성한다.
   * */
 
 
